@@ -1,0 +1,35 @@
+# name: docker-compose-actions-workflow
+# on:
+#   push:
+#     branches:
+#       - 'main'
+#     paths-ignore:
+#       - 'DCOS/**'
+#       - 'K8s/**'
+#       - 'load-gen/**'
+#       - 'OpenShift/**'
+#       - 'Swarm/**'
+
+# jobs:
+#   commit:
+#     runs-on: ubuntu-latest
+#     steps:
+#     - name: Notify instana on commit
+#       uses: taimos/github-action-instana-release@v4
+#       env:
+#         INSTANA_BASE: ${{ secrets.INSTANA_BASE }}
+#         INSTANA_TOKEN: ${{ secrets.INSTANA_TOKEN }}
+#       with:
+#         test: this is a test
+#         releaseName: new commit with following message ${{ github.event.head_commit.message }}
+#         releaseScope: >
+#           {
+#             "applications": [
+#               {
+#                 "name": "All Services",
+#                 "services": [
+#                   { "name": "zabbix-06-PHP" }
+#                 ]
+#               }
+#             ]
+#           }
